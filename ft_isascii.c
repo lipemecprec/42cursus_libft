@@ -6,15 +6,11 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 01:57:22 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/18 21:57:52 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/19 22:52:14 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	if (0 <= c && c <= 127)
-	{
-		return (c);
-	}
-	return (0);
+	return (0 <= c && c <= 127);
 }

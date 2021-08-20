@@ -6,13 +6,11 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 22:51:12 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/18 22:51:18 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/19 22:52:33 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	if ('0' <= c && c <= '9')
-		return (c);
-	return (0);
+	return ('0' <= c && c <= '9');
 }

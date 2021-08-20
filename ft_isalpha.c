@@ -6,15 +6,11 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 22:52:49 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/18 22:52:53 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/19 21:56:09 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
-	{
-		return (c);
-	}
-	return (0);
+	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
 }
