@@ -1,0 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/17 23:16:01 by faguilar          #+#    #+#             */
+/*   Updated: 2021/08/21 12:36:05 by faguilar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <stdlib.h>
+# include <unistd.h>
+
+int		ft_atoi(const char *nptr);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
+int		ft_isalnum(int c);
+int		ft_isalpha(int c);
+int		ft_isascii(int c);
+int		ft_isdigit(int c);
+int		ft_isprint(int c);
+/* The  memchr() function scans the initial n bytes of the memory area pointed
+to by s for the first instance of c. Both c and the bytes of the memory area
+pointed to by s are interpreted as unsigned char. Returns a pointer to the
+matching byte or NULL if the character does not  occur in the given memory area.
+*/
+void	*ft_memchr(const void *s, int c, size_t n);
+/* The memcmp() function compares the first n bytes (each interpreted as
+unsigned char) of the memory areas s1 and s2. Returns an integer less than,
+equal to, or greater than zero if the first n bytes of s1 is found,
+respectively, to be less than, to match, or be greater than the first n bytes
+of s2.*/
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+/* The memcpy() function copies n bytes from memory area src to memory area
+dest. The memory areas must not overlap. Returns a pointer to dest.*/
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+/* The memmove() function copies n bytes from memory area src to memory area
+dest. The memory areas may overlap: copying takes place as though the bytes
+in src are first copied into a temporary array that does not overlap src or
+dest,  and  the  bytes are then copied from the temporary array to dest.
+Returns a pointer to dest. */
+void	*ft_memmove(void *dest, const void *src, size_t n);
+/* The memset() function fills the first n bytes of the memory area pointed to
+by s with the constant byte c. Returns a pointer to the memory area s.*/
+void	*ft_memset(void *s, int c, size_t n);
+/* The strchr() function returns a pointer to the first occurrence of the
+character c in the string s.*/
+char	*ft_strchr(const char *s, int c);
+/* The  strdup() function returns a pointer to a new string which is a
+duplicate of the string s.*/
+char	*ft_strdup(const char *s);
+/* strlcat() appends string src to the end of dst. It will append at most
+dstsize – strlen(dst) – 1 characters. It will then NUL-terminate, unless
+dstsize is 0 or the original dst string was longer than dstsize.*/
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+/* The strlcpy() function copies up to size - 1 characters from the
+NUL-terminated string src to dst, NUL-terminating the result.*/
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlen(const char *s);
+/* The strcmp() function compares the two strings s1 and s2.  The locale is not
+taken into account (for a locale-aware comparison. Returns an integer less than,
+equal to, or greater than zero if s1 (or the first n bytes thereof) is found,
+respectively, to be less than, to match, or be greater than s2.*/
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+/*  The strnstr() function locates the first occurrence of the null-terminated
+string needle in the string haystack, where not more than size characters
+are searched.
+Return haystack If needle is an empty string; Return NULL if needle is not
+found, Returns a pointer to the first occurence of needle in haystack.*/
+char	*ft_strnstr(const char *haystack, const char *needle, size_t size);
+/* The strrchr() function returns a pointer to the last occurrence of the
+character c in the string s.*/
+char	*ft_strrchr(const char *s, int c);
+int		ft_toupper(int c);
+int		ft_tolower(int c);
+
+#endif

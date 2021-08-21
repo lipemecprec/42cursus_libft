@@ -6,16 +6,18 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 02:15:55 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/18 22:49:51 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/21 00:58:56 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(int *str)
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
 		i++;
 	}

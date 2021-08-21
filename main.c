@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 22:26:35 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/21 00:58:25 by faguilar         ###   ########.fr       */
+/*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
+/*   Updated: 2021/08/19 21:38:03 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <ctype.h>
+#include <stdio.h>
 
-void	*ft_memset(void *s, int c, size_t n)
+int	main(void)
 {
-	char	*str;
+	int	i;
+	int	ft;
+	int	orig;
 
-	str = (char *)s;
-	while (n > 0)
+	i = -254;
+	while (i <= 254)
 	{
-		n--;
-		str[n] = c;
+		ft = ft_isalpha(i);
+		orig = isalpha(i);
+		if (!ft != !orig)
+			printf("isAlpha(%c) - NG: ft: %d e orig: %d\n", i, ft, orig);
+		i++;
 	}
-	return (s);
+	i = -254;
+	while (i <= 254)
+	{
+		ft = ft_isdigit(i);
+		orig = isdigit(i);
+		if (!ft != !orig)
+			printf("isAlpha(%c) - NG: ft: %d e orig: %d\n", i, ft, orig);
+		i++;
+	}
 }
