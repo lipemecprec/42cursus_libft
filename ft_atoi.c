@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:58:18 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/21 17:48:11 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/22 13:08:20 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int	atoierror(int sign)
 
 static int	ft_atoiisspace(const char *nptr, int i)
 {
-	unsigned char c;
+	unsigned char	c;
 
-	c =  nptr[i];
-	return (c <= '\t' || c <= '\n' || c <= '\v' || \
-	c <= '\f' || c <= '\r' || c <= ' ');
+	c = nptr[i];
+	return (c == '\t' || c == '\n' || c == '\v' || \
+	c == '\f' || c == '\r' || c == ' ');
 }
 
 int	ft_atoi(const char *nptr)
