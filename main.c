@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/24 22:20:30 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/25 08:50:16 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,37 @@ void	test_ft_itoa()
 	printf("ft_itoa: 7|%s|\n",ft_itoa(7));
 }
 
+char	dummy(unsigned int i, char c)
+{
+	c = c + i;
+	return (c);
+}
+
+char	war_mapi(unsigned int i, char c)
+{
+	static int indexArray[11] = {0};
+
+	if (i > 10 || indexArray[i] == 1)
+		write(1, "wrong index\n", 12);
+	else
+		indexArray[i] = 1;
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	else if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	else
+		return (c);
+}
+void	test_ft_strmapi()
+{
+	printf("%s\n",ft_strmapi("Uma String", dummy));
+	printf("%s\n",ft_strmapi("", dummy));
+	printf("%s\n",ft_strmapi("000000000", dummy));
+	printf("%s\n",ft_strmapi("Uma String", war_mapi));
+	printf("%s\n",ft_strmapi("", war_mapi));
+	printf("%s\n",ft_strmapi("LoReM iPsUm", war_mapi));
+}
+
 int	main(void)
 {
 	// test_ft_isalpha();
@@ -182,5 +213,6 @@ int	main(void)
 	// test_ft_substr();
 	// test_ft_atoi();
 	// test_ft_trim();
-	test_ft_itoa();
+	// test_ft_itoa();
+	test_ft_strmapi();
 }
