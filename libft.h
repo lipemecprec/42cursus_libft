@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 23:16:01 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 18:28:21 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/25 19:29:19 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 and passing its index as first argument. Each character is passed by address to
 f to be modified if necessary*/
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+/*Outputs the character ’c’ to the given file descriptor.*/
+void	ft_putchar_fd(char c, int fd);
 
 #endif

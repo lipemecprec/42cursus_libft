@@ -29,7 +29,9 @@ SRCS =  ft_atoi.c		\
 		ft_split.c		\
 		ft_itoa.c		\
 		ft_strmapi.c	\
-		ft_striteri.c
+		ft_striteri.c	\
+		ft_putchar_fd.c	\
+
 LIB = libft.h
 OBJS = ${SRCS:%.c=%.o}
 
