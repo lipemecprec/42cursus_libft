@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 22:26:35 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 07:51:51 by faguilar         ###   ########.fr       */
+/*   Created: 2021/08/22 13:16:22 by faguilar          #+#    #+#             */
+/*   Updated: 2021/08/22 18:14:41 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned char	*str;
+	char	*sub;
 
-	str = (unsigned char *)s;
-	while (n > 0)
-	{
-		n--;
-		str[n] = c;
-	}
-	return (s);
+	sub = (char *)malloc(len + 1);
+	ft_bzero(sub, len + 1);
+	if (!sub)
+		return (NULL);
+	ft_strlcpy(sub, &s[start], len + 1);
+	sub[len] = '\0';
+	return (sub);
 }

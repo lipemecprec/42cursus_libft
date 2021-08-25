@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 23:16:01 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 19:29:19 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/25 19:47:32 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,11 @@ f to be modified if necessary*/
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 /*Outputs the character ’c’ to the given file descriptor.*/
 void	ft_putchar_fd(char c, int fd);
+/* Outputs the string ’s’ to the given file descriptor.*/
+void	ft_putstr_fd(char *s, int fd);
+/* Outputs the string ’s’ to the given file descriptor, followed by a newline.*/
+void	ft_putendl_fd(char *s, int fd);
+/* Outputs the integer ’n’ to the given file descriptor. */
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
