@@ -28,7 +28,8 @@ SRCS =  ft_atoi.c		\
 		ft_strtrim.c	\
 		ft_split.c		\
 		ft_itoa.c		\
-		ft_strmapi.c
+		ft_strmapi.c	\
+		ft_striteri.c
 LIB = libft.h
 OBJS = ${SRCS:%.c=%.o}
 
@@ -51,4 +52,4 @@ re: fclean all
 run: re
 	clang ${FLAGS} -lbsd main.c -lft -L . && ./a.out
 
-.PHONY: all clear fclean re
+.PHONY: all clear fclean re run

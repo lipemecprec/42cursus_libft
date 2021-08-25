@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 23:16:01 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 08:52:10 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/25 18:28:21 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,9 @@ string (with malloc(3)) resulting from successive applications of ’f’.
 Returns the string created from the successive applications of ’f’. NULL if the
 allocation fails. */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+/* Applies the function f to each character of thestring passed as argument,
+and passing its index as first argument. Each character is passed by address to
+f to be modified if necessary*/
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 #endif
