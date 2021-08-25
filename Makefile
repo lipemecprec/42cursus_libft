@@ -22,7 +22,12 @@ SRCS =  ft_atoi.c		\
 		ft_memmove.c	\
 		ft_memcmp.c		\
 		ft_tolower.c	\
-		ft_toupper.c
+		ft_toupper.c	\
+		ft_substr.c		\
+		ft_strjoin.c	\
+		ft_strtrim.c	\
+		ft_split.c		\
+		ft_itoa.c
 LIB = libft.h
 OBJS = ${SRCS:%.c=%.o}
 
@@ -42,7 +47,7 @@ fclean:
 
 re: fclean all
 
-run:
-	clang ${FLAGS} main.c -L . lft
+run: re
+	clang ${FLAGS} -lbsd main.c -lft -L . && ./a.out
 
 .PHONY: all clear fclean re

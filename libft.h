@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 23:16:01 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/21 12:36:05 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/24 21:22:30 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,27 @@ character c in the string s.*/
 char	*ft_strrchr(const char *s, int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+/* Allocates (with malloc(3)) and returns a substring from the string ’s’.
+The substring begins at index ’start’ and is of maximum size ’len’.
+Returns the substring or NULL if the allocation fails.*/
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+/* Allocates (with malloc(3)) and returns a new string, which is the result of
+the concatenation of ’s1’ and ’s2’.
+Returns the concatenation or NULL if the allocation fails.*/
+char	*ft_strjoin(char const *s1, char const *s2);
+/*Allocates (with malloc(3)) and returns a copy of’s1’ with the characters
+specified in ’set’ removed from the beginning and the end of the string.
+Returns the trimmed string or NULL if the allocation fails.*/
+char	*ft_strtrim(char const *s1, char const *set);
+/* Allocates (with malloc(3)) and returns an array of strings obtained by
+splitting ’s’ using the character ’c’ as a delimiter. The array must be 'ended
+by a NULL pointer.
+The array of new strings resulting from the split.
+NULL if the allocation fails.*/
+char	**ft_split(char const *s, char c);
+/* Allocates (with malloc(3)) and returns a string representing the integer
+received as an argument. Negative numbers must be handled.
+The string representing the integer. NULL if the allocation fails. */
+char *ft_itoa(int n);
 
 #endif
