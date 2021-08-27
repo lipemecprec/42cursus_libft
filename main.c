@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/26 23:16:55 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/27 05:17:22 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,8 @@ void	test_ft_split()
 	}
 	printf("ft_split with words and single spaces:\n");
 	res = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
-	while (*res[i] != '\0')
+	i = 0;
+	while (res[i] != 0)
 	{
 		printf("%s\n", res[i]);
 		i++;
@@ -167,14 +168,15 @@ void	test_ft_split()
 	printf("ft_split with words and multiple spaces:\n");
 	res = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
 	i = 0;
-	while (*res[i] != '\0')
+	while (res[i] != 0)
 	{
 		printf("%s\n", res[i]);
 		i++;
 	}
 	printf("ft_split with empty string:\n");
 	res = ft_split("", 'z');
-	while (*res[i] != '\0')
+	i = 0;
+	while (res[i] != 0)
 	{
 		printf("%s\n", res[i]);
 		i++;
@@ -244,9 +246,9 @@ int	main(void)
 	// test_ft_strlcat();
 	// test_ft_substr();
 	// test_ft_atoi();
-	// test_ft_split();
+	test_ft_split();
 	// test_ft_itoa();
 	// test_ft_strmapi();
 	// test_ft_strjoin();
-	test_ft_strtrim();
+	// test_ft_strtrim();
 }
