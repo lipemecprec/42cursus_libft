@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 17:15:31 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 08:55:17 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/26 22:05:32 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ static int	ft_splitcount(char const *s, char c)
 	int	size;
 	int	word;
 
-	i = 1;
+	i = 0;
 	word = 0;
 	size = 0;
 	while (1)
 	{
 		if (s[i] == c || s[i] == '\0')
 		{
+			// printf("size: %d\n", size);
 			if (size > 0)
 			{
 				word++;
@@ -37,6 +38,7 @@ static int	ft_splitcount(char const *s, char c)
 			break ;
 		i++;
 	}
+	// printf("words: %d\n", word);
 	return (word);
 }
 
@@ -44,32 +46,35 @@ char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		j;
-	size_t	words;
 	size_t	size;
 	int		slen;
 	char	**split;
 
 	slen = ft_strlen(s);
-	words = ft_splitcount(s, c);
-	split = (char **)ft_calloc(sizeof(char *), words + 2);
-	if (!split || words == 0)
+	split = (char **)ft_calloc(sizeof(char *), ft_splitcount(s, c) + 1);
+	if (!split)
 		return (NULL);
 	i = 0;
 	j = 0;
 	size = 0;
-	while (i < slen + 1)
+	while (i < slen + 1 && slen > 0)
 	{
-		size++;
 		if (s[i] == c || s[i] == '\0')
 		{
-			split[j] = (char *)ft_calloc(sizeof(char), size + 1);
-			if (split[j] != (NULL))
-				ft_strlcpy(split[j], &s[i - size + 1], size);
-			size = 0;
-			j++;
+			if (size > 0)
+			{
+				split[j] = (char *)ft_calloc(sizeof(char), size + 1);
+				if (split[j] != (NULL))
+					ft_strlcpy(split[j], &s[i - size], size + 1);
+				size = 0;
+				j++;
+			}
+			if(s[i] == '\0')
+				split[j] = ft_calloc(0, 0);
 		}
+		else
+			size++;
 		i++;
 	}
-	split[j] = ft_calloc(0, 0);
 	return (split);
 }

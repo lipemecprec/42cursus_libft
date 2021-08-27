@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/26 22:13:19 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/26 23:16:55 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,25 @@ void	test_ft_strjoin()
 	printf("strjoin: %s", strjoin);
 }
 
+void	test_ft_strtrim()
+{
+	char s1[10];
+	s1[0] = '\0';
+	printf("strtrim: |%s|\n",ft_strtrim(" abcOOaOOOOacb   ", " abc"));
+	printf("strtrim: |%s|\n",ft_strtrim("", " abc"));
+	printf("strtrim: |%s|\n",ft_strtrim("O", " abc"));
+	printf("strtrim: |%s|\n",ft_strtrim(" Oa", " abc"));
+	printf("strtrim: |%s|\n",ft_strtrim(" OOOOOOOOO   ", " "));
+	printf("strtrim: |%s|\n",ft_strtrim(" OOOOOOOOO   ", ""));
+	printf("strtrim: |%s|\n",ft_strtrim(s1, "OOOO"));
+	printf("strtrim: |%s|\n",ft_strtrim("NULL", s1));
+	printf("strtrim: |%s|\n",ft_strtrim("lorem \n ipsum \t dolor \n sit \t amet", " "));
+	printf("strtrim: |%s|\n",ft_strtrim("lorem ipsum dolor sit amet", "te"));
+	printf("strtrim: |%s|\n",ft_strtrim(" lorem ipsum dolor sit amet", " l"));
+	printf("strtrim: |%s|\n",ft_strtrim("lorem ipsum dolor sit amet", "tel"));
+	printf("strtrim: |%s|\n",ft_strtrim("               ", " "));
+}
+
 int	main(void)
 {
 	// test_ft_isalpha();
@@ -228,5 +247,6 @@ int	main(void)
 	// test_ft_split();
 	// test_ft_itoa();
 	// test_ft_strmapi();
-	test_ft_strjoin();
+	// test_ft_strjoin();
+	test_ft_strtrim();
 }
