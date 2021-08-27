@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 20:13:33 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/26 22:13:19 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,22 +145,43 @@ void	test_ft_atoi()
 	if(r!=o) printf("K- ft_atoi: |%i| \tatoi: |%i|\n",r,o);
 }
 
-void	test_ft_trim()
+void	test_ft_split()
 {
 	// char str[100] = "bananaaaa1 bana2 bananane3 ba4 banan5 ban6";
 	char **res;
 	int i = 0;
 
+	printf("ft_split with multiple spaces:\n");
 	res = ft_split("       ", ' ');
 	if (res)
 	{
 		printf("all spaces > OK\n");
 	}
+	printf("ft_split with words and single spaces:\n");
 	res = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
-	while (res[i] != (void *)0)
+	while (*res[i] != '\0')
 	{
 		printf("%s\n", res[i]);
 		i++;
+	}
+	printf("ft_split with words and multiple spaces:\n");
+	res = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
+	i = 0;
+	while (*res[i] != '\0')
+	{
+		printf("%s\n", res[i]);
+		i++;
+	}
+	printf("ft_split with empty string:\n");
+	res = ft_split("", 'z');
+	while (*res[i] != '\0')
+	{
+		printf("%s\n", res[i]);
+		i++;
+	}
+	if (res)
+	{
+		printf("empty > OK\n");
 	}
 }
 
@@ -187,6 +208,16 @@ void	test_ft_strmapi()
 	printf("%s\n",ft_strmapi("000000000", dummy));
 }
 
+void	test_ft_strjoin()
+{
+	char    s1[] = "lorem ipsum";
+	char    s2[] = "dolor sit amet";
+	char    *strjoin;
+
+	strjoin = ft_strjoin(s1, s2);
+	printf("strjoin: %s", strjoin);
+}
+
 int	main(void)
 {
 	// test_ft_isalpha();
@@ -194,7 +225,8 @@ int	main(void)
 	// test_ft_strlcat();
 	// test_ft_substr();
 	// test_ft_atoi();
-	// test_ft_trim();
+	// test_ft_split();
 	// test_ft_itoa();
-	test_ft_strmapi();
+	// test_ft_strmapi();
+	test_ft_strjoin();
 }

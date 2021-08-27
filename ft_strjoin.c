@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 14:25:03 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/22 23:03:40 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/26 22:14:51 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	join = (char *)malloc(s1len + s2len + 1);
 	if (!join)
 		return (NULL);
-	ft_strlcpy(join, s1, s1len);
+	ft_strlcpy(join, s1, s1len + 1);
 	ft_strlcat(join, s2, (s1len + s2len + 1));
 	return (join);
 }
