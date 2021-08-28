@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/27 05:17:22 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/28 16:41:37 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,23 @@ void	test_ft_isalpha()
 		orig = isalpha(i);
 		if (!ft != !orig)
 			printf("isAlpha(%c) - NG: ft: %d e orig: %d\n", i, ft, orig);
+		i++;
+	}
+}
+
+void	test_ft_isalnum()
+{
+	int	i;
+	int	ft;
+	int	orig;
+
+	i = -254;
+	while (i <= 254)
+	{
+		ft = ft_isalnum(i);
+		orig = isalnum(i);
+		if (!ft != !orig)
+			printf("isAlpha(%d) - NG: char (%c) ft: %d e orig: %d\n", i, i, ft, orig);
 		i++;
 	}
 }
@@ -239,16 +256,78 @@ void	test_ft_strtrim()
 	printf("strtrim: |%s|\n",ft_strtrim("               ", " "));
 }
 
+
+void	test_ft_lstadd_front()
+{
+	int i = 0;
+	int size = 0;
+	char *c;
+	t_list **head = malloc(sizeof(t_list));
+	t_list *temp = NULL;
+
+	printf("ft_lstadd_front\nhead: %p\n", head);
+	while (i < 25)
+	{
+		c = ft_itoa(i);
+		temp = ft_lstnew(c);
+		ft_lstadd_front(head, temp);
+		size = ft_lstsize(temp);
+		i++;
+	}
+	
+	temp = *head;
+	while (temp->next != NULL)
+	{
+		printf("%s >> ", temp->content);
+		temp = temp->next;
+	}
+	printf("%s >> ", temp->content);
+	printf("\nsize: %d\n", size);
+	
+
+}
+
+void	test_ft_lstadd_back()
+{
+	int i = 0;
+	int size = 0;
+	char *c;
+	t_list **head = malloc(sizeof(t_list));
+	t_list *temp = NULL;
+
+	printf("ft_lstadd_front\nhead: %p\n", head);
+	while (i < 25)
+	{
+		c = ft_itoa(i);
+		temp = ft_lstnew(c);
+		ft_lstadd_back(head, temp);
+		size = ft_lstsize(temp);
+		i++;
+	}
+
+	temp = *head;
+	while (temp->next != NULL)
+	{
+		printf("%s >> ", temp->content);
+		temp = temp->next;
+	}
+	printf("%s >> ", temp->content);
+	printf("\nsize: %d\n", size);
+
+}
+
 int	main(void)
 {
 	// test_ft_isalpha();
-	// test_ft_isalpha();
+	// test_ft_isalnum();
 	// test_ft_strlcat();
 	// test_ft_substr();
 	// test_ft_atoi();
-	test_ft_split();
+	// test_ft_split();
 	// test_ft_itoa();
 	// test_ft_strmapi();
 	// test_ft_strjoin();
 	// test_ft_strtrim();
+	// test_ft_lstadd_front();
+	// test_ft_lstadd_back();
 }
