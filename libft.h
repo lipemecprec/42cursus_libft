@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 23:16:01 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 19:47:32 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/28 16:46:43 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+
+/* \param content The data contained in the element.
+   \param next The next element’s address or NULL if it’s the last element.*/
+typedef struct	s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				t_list;
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
@@ -116,5 +124,32 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 /* Outputs the integer ’n’ to the given file descriptor. */
 void	ft_putnbr_fd(int n, int fd);
+/* utputs the string ’s’ to the given file descriptor.*/
+void	ft_putstr_fd(char *s, int fd);
+/* \bried Allocates (with malloc(3)) and returns a new element.
+\param content value 't_list content' will be set to.
+\return the new element */
+t_list	*ft_lstnew(void *content);
+/*	\brief Adds the element ’new’ at the beginning of the list.
+\param **lst Address of a pointer to the first link of a list.
+\param *new  Address of a pointer to the element to be added to the list.*/
+void	ft_lstadd_front(t_list **lst, t_list *new);
+/* \brief Counts the nunber of elements in a list.
+\param *lst The beginning of the list.
+\return Length of the list. */
+int		ft_lstsize(t_list *lst);
+/* \brief Returns the last element of the list.
+\param *lst The beginning of the list.
+\return Last element of the list. */
+t_list	*ft_lstlast(t_list *lst);
+/* \brief Adds the element 'new' to the end of the list.
+\param *lst The beginning of the list.
+\param *new Address of a pointer to the element to be addes to the list.*/
+void	ft_lstadd_back(t_list **lst, t_list *new);
+/* \brief Takes as a parameter an element and frees the memory of the element’s content using the function ’del’ given as a parameter and free the element.
+The memory of ’next’ must not be freed.
+\param *lst The element to free.
+\param *The address of the function used to delete the content. */
+void ft_lstdelone(t_list *lst, void (*del)(void*));
 
 #endif

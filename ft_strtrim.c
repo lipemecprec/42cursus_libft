@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 15:45:21 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/26 23:19:37 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/27 23:57:15 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static unsigned int	ft_getend(char const *s1, char const *set)
 {
 	int	i;
 
-	i = ft_strlen(s1);
-	if(i != 0)
-		i--;
-	while (i >= 0)
+	i = ft_strlen(s1) - 1;
+	while (i > 0)
 	{
 		if (ft_inset(s1[i], set) != 1)
-	 		break;
+		{
+			break ;
+		}
 		i--;
 	}
 	return (i);
@@ -59,21 +59,18 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char			*trim;
 	size_t			len;
 
-	if(s1)
+	start = ft_getstart(s1, set);
+	end = ft_getend(s1, set);
+	if (end < start)
 	{
-		start = ft_getstart(s1, set);
-		end = ft_getend(s1, set);
-		len = end - start + 1;
+		trim = ft_calloc(1, 1);
+		return (trim);
 	}
-	else
-		len = 0;
-	trim = calloc(len, sizeof(char));
+	len = end - start + 1;
+	trim = ft_calloc(len + 1, sizeof(char));
 	if (!trim)
 		return (NULL);
-	if (len > 0)
-		trim = ft_substr(s1, start, len);
-	else
-		trim = "";
-	trim[len + 1] = '\0';
+	trim = ft_substr(s1, start, len);
+	trim[len] = '\0';
 	return (trim);
 }
