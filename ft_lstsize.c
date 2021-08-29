@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 12:52:00 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/28 13:08:05 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/29 12:45:25 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	size_t	size;
+	int	size;
 
 	if (!lst)
 		return (0);
