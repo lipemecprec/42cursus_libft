@@ -35,12 +35,25 @@ Solutions presented here are okay with regular tests, therefore weren't yet test
 |---------------|:--:|
 |ft_itoa		|OK!|
 |ft_putchar_fd	|OK!|
-|ft_putendl_fd	|   |
-|ft_putnbr_fd	|   |
-|ft_putstr_fd	|   |
-|ft_split		|   |
-|ft_strjoin		|   |
+|ft_putendl_fd	|OK!|
+|ft_putnbr_fd	|OK!|
+|ft_putstr_fd	|OK!|
+|ft_split		|OK!|
+|ft_strjoin		|OK!|
 |ft_strmapi		|OK!|
-|ft_strtrim		|   |
+|ft_strtrim		|OK!|
 |ft_substr		|OK!|
 |ft_striteri	|OK!|
+---
+## Bonus fuctions
+|Function|Status|
+|-----------------|:--:|
+|ft_lstnew		|OK!|
+|ft_lstadd_front	|OK!|
+|ft_lstsize	|OK!|
+|ft_lstlast	|OK!|
+|ft_lstadd_back	|OK!|
+|ft_lstdelone		|OK!|
+|ft_lstclear		|OK!|
+|ft_lstiter		|OK!|
+|ft_lstmap		|OK!|
