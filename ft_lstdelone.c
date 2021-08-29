@@ -6,13 +6,13 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 16:43:58 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/28 16:45:05 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/29 11:46:23 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-  
+	del(lst->content);
 }
