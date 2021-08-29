@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 23:16:01 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/28 16:46:43 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/29 13:47:29 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 /* \param content The data contained in the element.
    \param next The next element’s address or NULL if it’s the last element.*/
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}				t_list;
+}		t_list;
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
@@ -116,7 +116,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 and passing its index as first argument. Each character is passed by address to
 f to be modified if necessary*/
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-/*Outputs the character ’c’ to the given file descriptor.*/
+/* Outputs the character ’c’ to the given file descriptor.*/
 void	ft_putchar_fd(char c, int fd);
 /* Outputs the string ’s’ to the given file descriptor.*/
 void	ft_putstr_fd(char *s, int fd);
@@ -139,17 +139,39 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 \return Length of the list. */
 int		ft_lstsize(t_list *lst);
 /* \brief Returns the last element of the list.
-\param *lst The beginning of the list.
+\param **lst The beginning of the list.
 \return Last element of the list. */
 t_list	*ft_lstlast(t_list *lst);
 /* \brief Adds the element 'new' to the end of the list.
-\param *lst The beginning of the list.
+\param **lst The beginning of the list.
 \param *new Address of a pointer to the element to be addes to the list.*/
 void	ft_lstadd_back(t_list **lst, t_list *new);
-/* \brief Takes as a parameter an element and frees the memory of the element’s content using the function ’del’ given as a parameter and free the element.
+/* \brief Takes as a parameter an element and frees the memory of the element’s
+content using the function ’del’ given as a parameter and free the element.
 The memory of ’next’ must not be freed.
 \param *lst The element to free.
-\param *The address of the function used to delete the content. */
-void ft_lstdelone(t_list *lst, void (*del)(void*));
+\param (*del) The address of the function used to delete the content. */
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+/* \brief Deletes and frees the given element and every successor of that
+element, using the function ’del’ and free(3). Finally, the pointer to the list
+must be set to NULL.
+\param *lst The adress of a pointer to an element.
+\param (*del) The address of the function used to delete the element's content.
+*/
+void	ft_lstclear(t_list **lst, void (*del)(void*));
+/* \brief Iterates the list ’lst’ and applies the function ’f’ to the content
+of each element.
+\param *lst The adress of a pointer to an element.
+\param (*f) The adress of the function used to iterate on the list. */
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+/* \brief Iterates the list ’lst’ and applies the function ’f’ to the content
+of each element. Creates a new list resulting of the successive applications of
+the function ’f’. The ’del’ function is used to delete the content of an
+element if needed.
+\param *lst The adress of a pointer to an element.
+\param (*f) The adress of the function used to iterate on the list.
+\param (*del)  The adress of the function used to delete the content of an
+element if needed. */
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

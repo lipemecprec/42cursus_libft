@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/28 16:41:37 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/29 00:56:01 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,6 @@ void	test_ft_strtrim()
 	printf("strtrim: |%s|\n",ft_strtrim("               ", " "));
 }
 
-
 void	test_ft_lstadd_front()
 {
 	int i = 0;
@@ -271,10 +270,9 @@ void	test_ft_lstadd_front()
 		c = ft_itoa(i);
 		temp = ft_lstnew(c);
 		ft_lstadd_front(head, temp);
-		size = ft_lstsize(temp);
 		i++;
 	}
-	
+
 	temp = *head;
 	while (temp->next != NULL)
 	{
@@ -283,7 +281,7 @@ void	test_ft_lstadd_front()
 	}
 	printf("%s >> ", temp->content);
 	printf("\nsize: %d\n", size);
-	
+
 
 }
 
@@ -301,7 +299,6 @@ void	test_ft_lstadd_back()
 		c = ft_itoa(i);
 		temp = ft_lstnew(c);
 		ft_lstadd_back(head, temp);
-		size = ft_lstsize(temp);
 		i++;
 	}
 
@@ -314,6 +311,43 @@ void	test_ft_lstadd_back()
 	printf("%s >> ", temp->content);
 	printf("\nsize: %d\n", size);
 
+}
+
+void	del(void *a)
+{
+	t_list *tmp;
+
+	tmp = a;
+	tmp->content = 0;
+	free(tmp->content);
+}
+
+void	test_ft_lstdelone()
+{
+	int i = 0;
+	char *c;
+	t_list **head = malloc(sizeof(t_list));
+	t_list *temp = NULL;
+
+	while (i < 7)
+	{
+		c = ft_itoa(i);
+		temp = ft_lstnew(c);
+		ft_lstadd_back(head, temp);
+		if (i%2 == 0)
+			ft_lstdelone(temp, del);
+		i++;
+	}
+
+	printf("ft_lstadd_front\nhead: %p\n", head);
+	temp = *head;
+	while (1)
+	{
+		printf("node: %p, content: %s, next: %p \n", temp, temp->content, temp->next);
+		if (temp->next == NULL)
+			break ;
+		temp = temp->next;
+	}
 }
 
 int	main(void)
@@ -330,4 +364,5 @@ int	main(void)
 	// test_ft_strtrim();
 	// test_ft_lstadd_front();
 	// test_ft_lstadd_back();
+	test_ft_lstdelone();
 }
