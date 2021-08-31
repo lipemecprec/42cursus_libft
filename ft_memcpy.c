@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 23:47:31 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/27 22:57:13 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/30 22:58:50 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	size_t			i;
 
 	if (!dest && !src)
-		return ((void *)0);
+		return (NULL);
 	destmem = (unsigned char *)dest;
 	srcmem = (unsigned char *)src;
 	i = 0;
