@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 11:44:43 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/28 00:16:39 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/30 23:03:14 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,24 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	void	*temp;
+	unsigned char	*destc;
+	unsigned char	*srcc;
+	size_t			i;
 
-	temp = (void *)malloc(n);
-	if (!temp)
+	if (!dest && !src)
 		return (NULL);
-	ft_bzero(temp, n);
-	ft_memcpy(temp, src, n);
-	ft_memcpy(dest, temp, n);
-	free(temp);
+	destc = (unsigned char *)dest;
+	srcc = (unsigned char *)src;
+	i = 1;
+	if (destc > srcc)
+	{
+		while (i <= n)
+		{
+			destc[n - i] = srcc[n - i];
+			i++;
+		}
+	}
+	else
+		ft_memcpy(destc, srcc, n);
 	return (dest);
 }
