@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/21 11:44:43 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/30 23:03:14 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/30 23:05:31 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	destc = (unsigned char *)dest;
 	srcc = (unsigned char *)src;
 	i = 1;
-	if (destc > srcc)
+	if (dest > src)
 	{
 		while (i <= n)
 		{
@@ -32,6 +32,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		}
 	}
 	else
-		ft_memcpy(destc, srcc, n);
+		ft_memcpy(dest, src, n);
 	return (dest);
 }
