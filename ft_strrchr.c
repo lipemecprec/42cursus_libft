@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:19:38 by faguilar          #+#    #+#             */
-/*   Updated: 2021/09/01 01:06:36 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/01 20:51:05 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)&s[len]);
 	while (len >= 0)
 	{
-		if (s[len] == c)
+		if ((unsigned char)s[len] == (unsigned char)c)
 			return ((char *)&s[len]);
 		len--;
 	}
