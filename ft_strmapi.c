@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 22:36:39 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/25 08:51:47 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/08/31 21:23:10 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		str[i] = f(i, s[i]);
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }
