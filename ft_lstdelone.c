@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 16:43:58 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/29 11:46:23 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/01 01:14:19 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	del(lst->content);
+	free(lst);
 }
