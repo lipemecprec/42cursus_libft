@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/09/02 21:13:31 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/02 22:26:44 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -441,6 +441,14 @@ void	test_ft_strnstr()
 	size_t	ssmax = 0;
 	printf("strtrim: |%s|\n",ft_strnstr(ss1, ss2, ssmax));
 	printf("strtrim: |%s|\n",strnstr(ss1, ss2, ssmax));
+	char *si1 = ft_strnstr(ss1, ss2, ssmax);
+	char *si2 = strnstr(ss1, ss2, ssmax);
+
+	if (si1 == si2)
+		printf("n > TEST_SUCCESS\n");
+	else
+		printf("n > TEST_FAILED\n");
+
 }
 
 // void	test_ft_calloc()
@@ -514,7 +522,7 @@ int	main(void)
 	// test_ft_isalnum();
 	// test_ft_strlcat();
 	// test_ft_substr();
-	test_ft_atoi();
+	// test_ft_atoi();
 	// test_ft_split();
 	// test_ft_itoa();
 	// test_ft_strmapi();
