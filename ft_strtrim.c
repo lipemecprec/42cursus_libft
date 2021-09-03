@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/22 15:45:21 by faguilar          #+#    #+#             */
-/*   Updated: 2021/09/01 01:20:08 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/01 18:38:09 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (trim);
 	}
 	len = end - start + 1;
-	trim = ft_calloc(len, sizeof(char));
+	trim = ft_substr(s1, start, len);
 	if (!trim)
 		return (NULL);
-	trim = ft_substr(s1, start, len);
-	trim[len] = '\0';
 	return (trim);
 }

@@ -19,7 +19,7 @@ BONUSOBJS = ${BONUSSRCS:%.c=%.o}
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) ${LIB}
 	ar rcs ${NAME} ${OBJS}
 
 ${OBJS}:
@@ -29,7 +29,7 @@ clean:
 	rm -f ${OBJS} ${BONUSOBJS}
 
 fclean:
-	rm -f ${OBJS} ${BONUSOBJS} ${NAME} *.gch 17Z90P
+	rm -f ${OBJS} ${BONUSOBJS} ${NAME} *.gch 17Z90P a.out libft.so
 
 re: fclean all
 
@@ -41,14 +41,14 @@ run: re
 runbonus: rebonus
 	$(CC) ${FLAGS} -lbsd main.c -lft -L . && ./a.out
 
-bonus: ${BONUSOBJS}
+bonus: $(NAME) ${BONUSOBJS}
 	ar rcs ${NAME} ${BONUSOBJS}
 
 ${BONUSOBJS}:
 	${CC} -I . -c ${FLAGS} ${BONUSSRCS}
 
 so:
-	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS)
+	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) ${BONUSSRCS}
+	gcc -nostartfiles -shared -o libft.so $(OBJS) ${BONUSOBJS}
 
 .PHONY: all clear fclean re run bonus rebonus

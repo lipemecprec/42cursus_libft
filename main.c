@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/29 00:56:01 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/02 21:13:31 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <bsd/string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
 
 void	test_ft_isalpha()
 {
@@ -148,8 +152,8 @@ void	test_ft_atoi()
 	r = ft_atoi("-2147483648");
 	o = atoi("-2147483648");
 	if(r!=o) printf("G- ft_atoi: |%i| \tatoi: |%i|\n",r,o);
-	r = ft_atoi("2147483647");
-	o = atoi("2147483647");
+	r = ft_atoi("2147483648000000000");
+	o = atoi("2147483648000000000");
 	if(r!=o) printf("H- ft_atoi: |%i| \tatoi: |%i|\n",r,o);
 	r = ft_atoi("\t\n\r\v\fd469 \n");
 	o = atoi("\t\n\r\v\fd469 \n");
@@ -256,99 +260,253 @@ void	test_ft_strtrim()
 	printf("strtrim: |%s|\n",ft_strtrim("               ", " "));
 }
 
-void	test_ft_lstadd_front()
+// void	test_ft_lstadd_front()
+// {
+// 	int i = 0;
+// 	int size = 0;
+// 	char *c;
+// 	t_list **head = malloc(sizeof(t_list));
+// 	t_list *temp = NULL;
+
+// 	printf("ft_lstadd_front\nhead: %p\n", head);
+// 	while (i < 25)
+// 	{
+// 		c = ft_itoa(i);
+// 		temp = ft_lstnew(c);
+// 		ft_lstadd_front(head, temp);
+// 		i++;
+// 	}
+
+// 	temp = *head;
+// 	while (temp->next != NULL)
+// 	{
+// 		printf("%s >> ", temp->content);
+// 		temp = temp->next;
+// 	}
+// 	printf("%s >> ", temp->content);
+// 	printf("\nsize: %d\n", size);
+
+
+// }
+
+// void	test_ft_lstadd_back()
+// {
+// 	int i = 0;
+// 	int size = 0;
+// 	char *c;
+// 	t_list **head = malloc(sizeof(t_list));
+// 	t_list *temp = NULL;
+
+// 	printf("ft_lstadd_front\nhead: %p\n", head);
+// 	while (i < 25)
+// 	{
+// 		c = ft_itoa(i);
+// 		temp = ft_lstnew(c);
+// 		ft_lstadd_back(head, temp);
+// 		i++;
+// 	}
+
+// 	temp = *head;
+// 	while (temp->next != NULL)
+// 	{
+// 		printf("%s >> ", temp->content);
+// 		temp = temp->next;
+// 	}
+// 	printf("%s >> ", temp->content);
+// 	printf("\nsize: %d\n", size);
+
+// }
+
+// void	del(void *a)
+// {
+// 	t_list *tmp;
+
+// 	tmp = a;
+// 	tmp->content = 0;
+// 	free(tmp->content);
+// }
+
+// void	test_ft_lstdelone()
+// {
+// 	int i = 0;
+// 	char *c;
+// 	t_list **head = malloc(sizeof(t_list));
+// 	t_list *temp = NULL;
+
+// 	while (i < 7)
+// 	{
+// 		c = ft_itoa(i);
+// 		temp = ft_lstnew(c);
+// 		ft_lstadd_back(head, temp);
+// 		if (i%2 == 0)
+// 			ft_lstdelone(temp, del);
+// 		i++;
+// 	}
+
+// 	printf("ft_lstadd_front\nhead: %p\n", head);
+// 	temp = *head;
+// 	while (1)
+// 	{
+// 		printf("node: %p, content: %s, next: %p \n", temp, temp->content, temp->next);
+// 		if (temp->next == NULL)
+// 			break ;
+// 		temp = temp->next;
+// 	}
+// }
+
+// void	test_ft_memmove8()
+// {
+// 	int size = 128 * 1024 * 1024;
+// 	char *dst = (char *)malloc(sizeof(char) * size);
+// 	char *data = (char *)malloc(sizeof(char) * size);
+
+// 	__builtin___memset_chk (data, 'A', size, __builtin_object_size (data, 0));
+// 	if (!dst)
+// 		printf("test_ft_memmove8 > TEST_INVISIBLE\n");
+// 	else
+// 	{
+// 		ft_memmove(dst, data, size);
+// 		printf("test_ft_memmove8 > TEST_SUCCESS\n");
+// 	}
+// }
+
+// void	test_ft_memmove13()
+// {
+// 	printf("test_ft_memmove13 > %s\n",ft_memmove(((void *)0), ((void *)0), 5));
+// }
+
+// void	test_ft_memmove()
+// {
+// 	char	src[] = "lorem ipsum dolor sit amet";
+//     char	*dest;
+
+// 	dest = src + 1;
+// 	printf("test_ft_memmove > %s\n",ft_memmove(dest, src, 8));
+// 	printf("test_ft_memmove > %s\n",ft_memmove(dest, "123456789", 5));
+// 	printf("test_ft_memmove > %s\n",ft_memmove(dest, "con\0se\0ctur", 8));
+// }
+
+// void	test_ft_memmove14()
+// {
+// 	// WHY MALLOC?
+// 	// 	Diffs:
+// 	//      memmove: |the cake is a lie !|
+// 	//   ft_memmove: |(null)|
+// 	char *src = "the cake is a lie !\0I'm hidden lol\r\n";
+// 	char buff[0xF0];
+
+// 	char *ret = ft_memmove(buff, src, 100);
+// 	if (ret == ((void *)0))
+// 		printf("test_ft_memmove14 > TEST_FAILED\n");
+// 	else
+// 		printf("test_ft_memmove14 > TEST_SUCCESS\n");
+// }
+
+// void	test_ft_strcmp()
+// {
+// 	// [fail]: your strncmp doesn't stop at \0
+// 	// Diffs:
+// 	// 	strncmp: |0|
+// 	// ft_strncmp: |-1|
+// 	char *s1 = "atoms\0\0\0\0";
+// 	char *s2 = "atoms\0abc";
+// 	size_t size = 8;
+// 	int i1 = ((strncmp(s1, s2, size) > 0) ? 1 : ((strncmp(s1, s2, size) < 0) ? -1 : 0));
+// 	int i2 = ((ft_strncmp(s1, s2, size) > 0) ? 1 : ((ft_strncmp(s1, s2, size) < 0) ? -1 : 0));
+
+// 	if (i1 == i2)
+// 		printf("test_ft_strcmp > TEST_SUCCESS\n");
+// 	else
+// 		printf("test_ft_strcmp > TEST_FAILED\n");
+// }
+
+void	test_ft_strnstr()
 {
-	int i = 0;
-	int size = 0;
-	char *c;
-	t_list **head = malloc(sizeof(t_list));
-	t_list *temp = NULL;
+	// [fail]: your strnstr does not work with empty strings and 0 length
+	// Diffs:
+	// 	strnstr: |AAAAAAAAAAAAA|
+	// ft_strnstr: |(null)|
+	char *s1 = "AAAAAAAAAAAAA";
+	size_t max = strlen(s1);
+	char *i1 = strnstr(s1, s1, max);
+	char *i2 = ft_strnstr(s1, s1, max);
 
-	printf("ft_lstadd_front\nhead: %p\n", head);
-	while (i < 25)
-	{
-		c = ft_itoa(i);
-		temp = ft_lstnew(c);
-		ft_lstadd_front(head, temp);
-		i++;
-	}
+	if (i1 == i2)
+		printf("n > TEST_SUCCESS\n");
+	else
+		printf("n > TEST_FAILED\n");
 
-	temp = *head;
-	while (temp->next != NULL)
-	{
-		printf("%s >> ", temp->content);
-		temp = temp->next;
-	}
-	printf("%s >> ", temp->content);
-	printf("\nsize: %d\n", size);
-
-
+	char	*ss1 = "oh no not the empty string !";
+	char	*ss2 = "";
+	size_t	ssmax = 0;
+	printf("strtrim: |%s|\n",ft_strnstr(ss1, ss2, ssmax));
+	printf("strtrim: |%s|\n",strnstr(ss1, ss2, ssmax));
 }
 
-void	test_ft_lstadd_back()
-{
-	int i = 0;
-	int size = 0;
-	char *c;
-	t_list **head = malloc(sizeof(t_list));
-	t_list *temp = NULL;
+// void	test_ft_calloc()
+// {
+// 	// [fail]: your calloc don't work with 0 size
+// 	void *str = ft_calloc(0, 0);
 
-	printf("ft_lstadd_front\nhead: %p\n", head);
-	while (i < 25)
-	{
-		c = ft_itoa(i);
-		temp = ft_lstnew(c);
-		ft_lstadd_back(head, temp);
-		i++;
-	}
+// 	if (str == ((void *)0))
+// 		printf("test_ft_calloc > TEST_FAILED\n");
+// 	else
+// 	{
+// 		free(str);
+// 		printf("test_ft_calloc > TEST_SUCCESS\n");
+// 	}
+// }
 
-	temp = *head;
-	while (temp->next != NULL)
-	{
-		printf("%s >> ", temp->content);
-		temp = temp->next;
-	}
-	printf("%s >> ", temp->content);
-	printf("\nsize: %d\n", size);
+// void	test_ft_substr6()
+// {
+// 	// [crash]: you did not protect your malloc
+// 	char *s = "malloc protection !";
 
-}
+// 	char *ret = ft_substr(s, 0, 5);
+// 	if (ret == ((void *)0))
+// 		printf("test_ft_substr6 > TEST_SUCCESS\n");
+// 	else
+// 	{
+// 		printf("test_ft_substr6 > TEST_FAILED\n");
+// 		(void)s;
+// 		(void)ft_substr;
+// 	}
+// }
 
-void	del(void *a)
-{
-	t_list *tmp;
+// void	test_ft_substr9()
+// {
+// 	// [fail]: your substr does not work when start >= ft_strlen(s)
+// 	// Diffs:
+// 	// 	substr: ||
+// 	// ft_substr: | strjoin d|
+// 	char *str = "01234";
+// 	size_t size = 10;
+// 	char *ret = ft_substr(str, 10, size);
 
-	tmp = a;
-	tmp->content = 0;
-	free(tmp->content);
-}
+// 	if (!strncmp(ret, "", 1))
+// 	{
+// 		free(ret);
+// 		printf("test_ft_substr9 > TEST_SUCCESS\n");
+// 	}
+// 	else
+// 	{
+// 		free(ret);
+// 		printf("test_ft_substr9 > TEST_FAILED\n");
+// 	}
+// }
 
-void	test_ft_lstdelone()
-{
-	int i = 0;
-	char *c;
-	t_list **head = malloc(sizeof(t_list));
-	t_list *temp = NULL;
+// void	test_ft_putnbr_fd()
+// {
+// 	int arr[6] = {0, 7, -2147483648, 2147483647, -3000, 123456789 };
+// 	int i = 0;
 
-	while (i < 7)
-	{
-		c = ft_itoa(i);
-		temp = ft_lstnew(c);
-		ft_lstadd_back(head, temp);
-		if (i%2 == 0)
-			ft_lstdelone(temp, del);
-		i++;
-	}
-
-	printf("ft_lstadd_front\nhead: %p\n", head);
-	temp = *head;
-	while (1)
-	{
-		printf("node: %p, content: %s, next: %p \n", temp, temp->content, temp->next);
-		if (temp->next == NULL)
-			break ;
-		temp = temp->next;
-	}
-}
+// 	while (i < 6)
+// 	{
+// 		ft_putnbr_fd(arr[i], open("test.txt", O_RDWR+O_APPEND));
+// 		ft_putchar_fd('\n', open("test.txt", O_RDWR+O_APPEND));
+// 		i++;
+// 	}
+// }
 
 int	main(void)
 {
@@ -356,7 +514,7 @@ int	main(void)
 	// test_ft_isalnum();
 	// test_ft_strlcat();
 	// test_ft_substr();
-	// test_ft_atoi();
+	test_ft_atoi();
 	// test_ft_split();
 	// test_ft_itoa();
 	// test_ft_strmapi();
@@ -364,5 +522,15 @@ int	main(void)
 	// test_ft_strtrim();
 	// test_ft_lstadd_front();
 	// test_ft_lstadd_back();
-	test_ft_lstdelone();
+	// test_ft_lstdelone();
+	// test_ft_memmove8();
+	// test_ft_memmove13();
+	// test_ft_memmove();
+	// test_ft_memmove14();
+	// test_ft_strcmp();
+	test_ft_strnstr();
+	// test_ft_calloc();
+	// test_ft_substr6();
+	// test_ft_substr9();
+	// test_ft_putnbr_fd();
 }
