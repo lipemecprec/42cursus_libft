@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:13:07 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/21 00:57:26 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/04 21:41:30 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char	*str;
-
-	str = (char *)s;
-	while (n > 0)
-	{
-		n--;
-		str[n] = '\0';
-	}
+	ft_memset(s, '\0', n);
 }

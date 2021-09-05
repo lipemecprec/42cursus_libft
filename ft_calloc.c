@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 02:01:54 by faguilar          #+#    #+#             */
-/*   Updated: 2021/08/30 23:38:49 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/03 19:35:12 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (nmemb * size < 0)
 		return (NULL);
 	arr = malloc(nmemb * size);
-	if (arr == (NULL))
+	if (!arr)
 		return (NULL);
 	ft_bzero(arr, nmemb * size);
 	return (arr);
