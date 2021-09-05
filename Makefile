@@ -1,5 +1,6 @@
 CC = clang
 FLAGS = -Wall -Wextra -Werror
+RM = rm -f
 NAME = libft.a
 LIB = libft.h
 SRCS =  ft_atoi.c	ft_bzero.c		ft_calloc.c		ft_isalpha.c	\
@@ -17,38 +18,38 @@ BONUSSRCS = ft_lstnew.c			ft_lstadd_front.c	ft_lstsize.c	\
 			ft_lstclear.c		ft_lstiter.c		ft_lstmap.c
 BONUSOBJS = ${BONUSSRCS:%.c=%.o}
 
-all: $(NAME)
+all: ${NAME}
 
-$(NAME): $(OBJS) ${LIB}
-	ar rcs ${NAME} ${OBJS}
+${NAME}: ${OBJS} ${LIB}
+	@ar rc ${NAME} ${OBJS}
 
 ${OBJS}:
-	$(CC) -I . -c ${FLAGS} ${SRCS}
+	@${CC} -I . -c ${FLAGS} ${SRCS}
 
 clean:
-	rm -f ${OBJS} ${BONUSOBJS}
+	@${RM} ${OBJS} ${BONUSOBJS}
 
-fclean:
-	rm -f ${OBJS} ${BONUSOBJS} ${NAME} *.gch 17Z90P a.out libft.so
+fclean: clean
+	@${RM} ${NAME} *.gch 17Z90P a.out libft.so
 
 re: fclean all
 
 rebonus: fclean all bonus
 
 run: re
-	$(CC) ${FLAGS} -lbsd main.c -lft -L . && ./a.out
+	${CC} ${FLAGS} -lbsd -g -Og -std=c99 main.c -lft -L . && ./a.out
 
 runbonus: rebonus
-	$(CC) ${FLAGS} -lbsd main.c -lft -L . && ./a.out
+	${CC} ${FLAGS} -lbsd -g -Og -std=c99 main.c -lft -L . && ./a.out
 
-bonus: $(NAME) ${BONUSOBJS}
+bonus: ${NAME} ${BONUSOBJS}
 	ar rcs ${NAME} ${BONUSOBJS}
 
 ${BONUSOBJS}:
 	${CC} -I . -c ${FLAGS} ${BONUSSRCS}
 
 so:
-	$(CC) -nostartfiles -fPIC $(FLAGS) $(SRCS) ${BONUSSRCS}
-	gcc -nostartfiles -shared -o libft.so $(OBJS) ${BONUSOBJS}
+	${CC} -nostartfiles -fPIC ${FLAGS} ${SRCS} ${BONUSSRCS}
+	gcc -nostartfiles -shared -o libft.so ${OBJS} ${BONUSOBJS}
 
-.PHONY: all clear fclean re run bonus rebonus
+.PHONY: ${NAME} all clear fclean re

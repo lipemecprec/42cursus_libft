@@ -6,19 +6,23 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:30:45 by faguilar          #+#    #+#             */
-/*   Updated: 2021/09/02 22:26:44 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/05 01:08:41 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <ctype.h>
-#include <stdio.h>
 #include <bsd/string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+// #define _CRTDBG_MAP_ALLOC
+#include <stdio.h>
+// #include <crtdbg.h>
+
+// _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 
 
 void	test_ft_isalpha()
@@ -32,6 +36,23 @@ void	test_ft_isalpha()
 	{
 		ft = ft_isalpha(i);
 		orig = isalpha(i);
+		if (!ft != !orig)
+			printf("isAlpha(%c) - NG: ft: %d e orig: %d\n", i, ft, orig);
+		i++;
+	}
+}
+
+void	test_ft_isdigit()
+{
+	int	i;
+	int	ft;
+	int	orig;
+
+	i = -254;
+	while (i <= 254)
+	{
+		ft = ft_isdigit(i);
+		orig = isdigit(i);
 		if (!ft != !orig)
 			printf("isAlpha(%c) - NG: ft: %d e orig: %d\n", i, ft, orig);
 		i++;
@@ -55,7 +76,22 @@ void	test_ft_isalnum()
 	}
 }
 
-void	test_ft_isdigit()
+void	test_ft_isascii()
+{
+	int	i;
+	int	ft;
+
+	i = -254;
+	while (i <= 254)
+	{
+		ft = ft_isascii(i);
+		if ((ft == 0 && (0 <= i && i <= 127)) || (ft == 1 && (i < 0 || 127 < i)))
+			printf("isAscii(%d) - NG: char (%c) ft: %d", i, i, ft);
+		i++;
+	}
+}
+
+void	test_ft_isprint()
 {
 	int	i;
 	int	ft;
@@ -64,12 +100,94 @@ void	test_ft_isdigit()
 	i = -254;
 	while (i <= 254)
 	{
-		ft = ft_isdigit(i);
-		orig = isdigit(i);
+		ft = ft_isprint(i);
+		orig = isprint(i);
 		if (!ft != !orig)
-			printf("isAlpha(%c) - NG: ft: %d e orig: %d\n", i, ft, orig);
+			printf("isprint(%d) - NG: char (%c) ft: %d e orig: %d\n", i, i, ft, orig);
 		i++;
 	}
+}
+
+void	test_ft_strlen()
+{
+	char 	*s;
+
+	s = (char *)malloc(20 * sizeof(char));
+	s = "01234567890123456789";
+	if (ft_strlen(s) != strlen(s))
+		printf("strlen(%s) - NG\n", s);
+	s = "";
+	if (ft_strlen(s) != strlen(s))
+		printf("strlen(%s) - NG\n", s);
+	s = "\0";
+	if (ft_strlen(s) != strlen(s))
+		printf("strlen(%s) - NG\n", s);
+	s = "\n\v\f\t\r ";
+	if (ft_strlen(s) != strlen(s))
+		printf("strlen(%s) - NG\n", s);
+	s = "             \0         ";
+	if (ft_strlen(s) != strlen(s))
+		printf("strlen(%s) - NG\n", s);
+	s = 0;
+	// long	temp;
+		// temp = ft_strlen(s);
+		// temp = strlen(s);
+}
+
+void	test_ft_memset()
+{
+	char 	*s;
+	char 	*s_orig;
+	int	c;
+	size_t	size;
+	char 	*ft;
+	char 	*orig;
+
+	size = 0;
+	while (size < 512)
+	{
+		s = ft_calloc(size, sizeof(char));
+		s_orig = ft_calloc(size, sizeof(char));
+		c = size / 127;
+		ft = ft_memset(s, c, size);
+		orig = memset(s_orig, c, size);
+		if (memcmp(orig, ft, size) != 0)
+			printf("memset fail at > %zu with > %d | s > %s | s_orig > %s\n", size, c, s, s_orig);
+		size ++;
+	}
+}
+
+void	test_ft_memcpy()
+{
+	char	*input[5] = {"", "\0", "1234567890\0", "çªº  😊  ✔  ✨  \0", "'\0"};
+	char	*dest;
+	char	*dest_orig;
+	int		i = 0;
+
+	dest = (char *)ft_calloc(20, 1);
+	dest_orig = (char *)ft_calloc(20, 1);
+	while (i < 5)
+	{
+		ft_memcpy(dest, &input[i], 7);
+		memcpy(dest_orig, &input[i], 7);
+		if (memcmp(dest, dest_orig, 7) != 0)
+			printf("memcpy fail\n");
+		i++;
+	}
+}
+
+void	test_ft_memmove()
+{
+	if (ft_memmove(((void *)0), ((void *)0), 5))
+		printf("memmove null fail\n");
+
+	// char	src[] = "lorem ipsum dolor sit amet";
+    // char	*dest;
+
+	// dest = src + 1;
+	// printf("test_ft_memmove > %s\n",ft_memmove(dest, src, 8));
+	// printf("test_ft_memmove > %s\n",ft_memmove(dest, "123456789", 5));
+	// printf("test_ft_memmove > %s\n",ft_memmove(dest, "con\0se\0ctur", 8));
 }
 
 void	test_ft_strlcat()
@@ -229,6 +347,8 @@ void	test_ft_strmapi()
 	printf("%s\n",ft_strmapi("Uma String", dummy));
 	printf("%s\n",ft_strmapi("", dummy));
 	printf("%s\n",ft_strmapi("000000000", dummy));
+
+	// _CrtDumpMemoryLeaks();
 }
 
 void	test_ft_strjoin()
@@ -354,54 +474,6 @@ void	test_ft_strtrim()
 // 	}
 // }
 
-// void	test_ft_memmove8()
-// {
-// 	int size = 128 * 1024 * 1024;
-// 	char *dst = (char *)malloc(sizeof(char) * size);
-// 	char *data = (char *)malloc(sizeof(char) * size);
-
-// 	__builtin___memset_chk (data, 'A', size, __builtin_object_size (data, 0));
-// 	if (!dst)
-// 		printf("test_ft_memmove8 > TEST_INVISIBLE\n");
-// 	else
-// 	{
-// 		ft_memmove(dst, data, size);
-// 		printf("test_ft_memmove8 > TEST_SUCCESS\n");
-// 	}
-// }
-
-// void	test_ft_memmove13()
-// {
-// 	printf("test_ft_memmove13 > %s\n",ft_memmove(((void *)0), ((void *)0), 5));
-// }
-
-// void	test_ft_memmove()
-// {
-// 	char	src[] = "lorem ipsum dolor sit amet";
-//     char	*dest;
-
-// 	dest = src + 1;
-// 	printf("test_ft_memmove > %s\n",ft_memmove(dest, src, 8));
-// 	printf("test_ft_memmove > %s\n",ft_memmove(dest, "123456789", 5));
-// 	printf("test_ft_memmove > %s\n",ft_memmove(dest, "con\0se\0ctur", 8));
-// }
-
-// void	test_ft_memmove14()
-// {
-// 	// WHY MALLOC?
-// 	// 	Diffs:
-// 	//      memmove: |the cake is a lie !|
-// 	//   ft_memmove: |(null)|
-// 	char *src = "the cake is a lie !\0I'm hidden lol\r\n";
-// 	char buff[0xF0];
-
-// 	char *ret = ft_memmove(buff, src, 100);
-// 	if (ret == ((void *)0))
-// 		printf("test_ft_memmove14 > TEST_FAILED\n");
-// 	else
-// 		printf("test_ft_memmove14 > TEST_SUCCESS\n");
-// }
-
 // void	test_ft_strcmp()
 // {
 // 	// [fail]: your strncmp doesn't stop at \0
@@ -420,36 +492,36 @@ void	test_ft_strtrim()
 // 		printf("test_ft_strcmp > TEST_FAILED\n");
 // }
 
-void	test_ft_strnstr()
-{
-	// [fail]: your strnstr does not work with empty strings and 0 length
-	// Diffs:
-	// 	strnstr: |AAAAAAAAAAAAA|
-	// ft_strnstr: |(null)|
-	char *s1 = "AAAAAAAAAAAAA";
-	size_t max = strlen(s1);
-	char *i1 = strnstr(s1, s1, max);
-	char *i2 = ft_strnstr(s1, s1, max);
+// void	test_ft_strnstr()
+// {
+// 	// [fail]: your strnstr does not work with empty strings and 0 length
+// 	// Diffs:
+// 	// 	strnstr: |AAAAAAAAAAAAA|
+// 	// ft_strnstr: |(null)|
+// 	char *s1 = "AAAAAAAAAAAAA";
+// 	size_t max = strlen(s1);
+// 	char *i1 = strnstr(s1, s1, max);
+// 	char *i2 = ft_strnstr(s1, s1, max);
 
-	if (i1 == i2)
-		printf("n > TEST_SUCCESS\n");
-	else
-		printf("n > TEST_FAILED\n");
+// 	if (i1 == i2)
+// 		printf("n > TEST_SUCCESS\n");
+// 	else
+// 		printf("n > TEST_FAILED\n");
 
-	char	*ss1 = "oh no not the empty string !";
-	char	*ss2 = "";
-	size_t	ssmax = 0;
-	printf("strtrim: |%s|\n",ft_strnstr(ss1, ss2, ssmax));
-	printf("strtrim: |%s|\n",strnstr(ss1, ss2, ssmax));
-	char *si1 = ft_strnstr(ss1, ss2, ssmax);
-	char *si2 = strnstr(ss1, ss2, ssmax);
+// 	char	*ss1 = "oh no not the empty string !";
+// 	char	*ss2 = "";
+// 	size_t	ssmax = 0;
+// 	printf("strtrim: |%s|\n",ft_strnstr(ss1, ss2, ssmax));
+// 	printf("strtrim: |%s|\n",strnstr(ss1, ss2, ssmax));
+// 	char *si1 = ft_strnstr(ss1, ss2, ssmax);
+// 	char *si2 = strnstr(ss1, ss2, ssmax);
 
-	if (si1 == si2)
-		printf("n > TEST_SUCCESS\n");
-	else
-		printf("n > TEST_FAILED\n");
+// 	if (si1 == si2)
+// 		printf("n > TEST_SUCCESS\n");
+// 	else
+// 		printf("n > TEST_FAILED\n");
 
-}
+// }
 
 // void	test_ft_calloc()
 // {
@@ -518,27 +590,31 @@ void	test_ft_strnstr()
 
 int	main(void)
 {
-	// test_ft_isalpha();
-	// test_ft_isalnum();
+	test_ft_isalpha();
+	test_ft_isdigit();
+	test_ft_isalnum();
+	test_ft_isascii();
+	test_ft_isprint();
+	test_ft_strlen();
+	test_ft_memset();
+	test_ft_memcpy();
+	test_ft_memmove();
 	// test_ft_strlcat();
 	// test_ft_substr();
 	// test_ft_atoi();
 	// test_ft_split();
 	// test_ft_itoa();
-	// test_ft_strmapi();
 	// test_ft_strjoin();
 	// test_ft_strtrim();
 	// test_ft_lstadd_front();
 	// test_ft_lstadd_back();
 	// test_ft_lstdelone();
-	// test_ft_memmove8();
-	// test_ft_memmove13();
-	// test_ft_memmove();
-	// test_ft_memmove14();
 	// test_ft_strcmp();
-	test_ft_strnstr();
+	// test_ft_strnstr();
 	// test_ft_calloc();
 	// test_ft_substr6();
 	// test_ft_substr9();
 	// test_ft_putnbr_fd();
+	// test_ft_strmapi();
+
 }
