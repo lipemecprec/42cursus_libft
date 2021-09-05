@@ -6,7 +6,7 @@
 /*   By: faguilar <faguilar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 22:36:39 by faguilar          #+#    #+#             */
-/*   Updated: 2021/09/03 21:03:30 by faguilar         ###   ########.fr       */
+/*   Updated: 2021/09/04 22:46:12 by faguilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*str;
 	unsigned int	i;
 
-	str = (char *)ft_calloc(sizeof(str), ft_strlen((char *)s) + 1);
+	str = (char *)ft_calloc(sizeof(char), ft_strlen(s) + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -26,6 +26,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		str[i] = f(i, s[i]);
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }
