@@ -1,4 +1,4 @@
-# 42cursus_libft
+# ![image](https://user-images.githubusercontent.com/65516841/136139576-2bc0e053-b1b5-4ee4-bf56-be882df11170.png) 42cursus_libft
 My very first C library. it aims to reimplement most common basic C functions.
 
 Solutions presented here are okay with regular tests, therefore weren't yet tested by Molinette.
