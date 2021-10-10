@@ -57,3 +57,7 @@ Solutions presented here are okay with regular tests, therefore weren't yet test
 |ft_lstclear		|OK!|
 |ft_lstiter		|OK!|
 |ft_lstmap		|OK!|
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)](https://forthebadge.com)
